@@ -167,7 +167,7 @@ var incoming_listener = func {
 
 var maxDamageDistFromWarhead = func (lbs) {
   # very simple
-  var dist = 3*math.sqrt(lbs);
+  var dist = 6*math.sqrt(lbs);
 
   return dist;
 }
