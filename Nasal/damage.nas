@@ -101,7 +101,7 @@ var incoming_listener = func {
             }
           }
         }
-      } elsif (getprop("/controls/armament/mp-messaging") == 1) { # mirage: getprop("/controls/armament/mp-messaging")
+      } elsif ( 1 == 1) { #
         # latest version of failure manager and taking damage enabled
         #print("damage enabled");
         var last1 = split(" ", last_vector[1]);
@@ -228,29 +228,6 @@ var processCallsigns = func () {
 
 processCallsigns();
 
-#m2000-5
-var sendMis = func () {
-  var mkeys = keys(missile.MISSILE.active);
-  var str = "";
-  foreach(var m; mkeys) {
-    var mid = m;
-    m = missile.MISSILE.active[m];
-    if (m.status == 2) {
-      var lat = m.latN.getValue();
-      var lon = m.lonN.getValue();
-      var alt = m.altN.getValue();
-      #print();
-      #print(mid);
-      #print(lat);
-      #print(lon);
-      #print(alt);
-      str = str~mid~";"~lat~";"~lon~";"~alt~":";
-    }
-  }
-  setprop("sim/multiplay/generic/string[13]", str);
-  logTime();
-  settimer(sendMis,0.05);
-}
 
 var logTime = func{
   #log time and date for outputing ucsv files for converting into KML files for google earth.
@@ -262,8 +239,6 @@ var logTime = func{
     setprop("logging/time-log", time);
   }
 }
-
-sendMis();
 
 var ct = func (type) {
   if (type == "c-u") {
@@ -311,11 +286,7 @@ var code_ct = func () {
   if (ff == nil or ff != 1) {
     ff = 0;
   }
-  var cl =  getprop("sim/weight[0]/weight-lb")+getprop("sim/weight[1]/weight-lb")
-           +getprop("sim/weight[2]/weight-lb")+getprop("sim/weight[3]/weight-lb")
-           +getprop("sim/weight[4]/weight-lb")+getprop("sim/weight[5]/weight-lb")
-           +getprop("sim/weight[6]/weight-lb")+getprop("sim/weight[7]/weight-lb")
-           +getprop("sim/weight[8]/weight-lb");
+  var cl = 0;
   if (cl > (ll*1.05) and getprop("gear/gear[0]/wow") != TRUE) {
     setprop("sim/ct/rl", 1);
   }
