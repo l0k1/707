@@ -10,6 +10,8 @@ var warhead_lbs = {
     "aim-7":                88.00,
     "RB-71":                88.00,
     "aim-9":                20.80,
+    "AIM-9":                20.80,
+    "RB-24":                20.80,
     "RB-24J":               20.80,
     "RB-74":                20.80,
     "R74":                  16.00,
@@ -25,6 +27,13 @@ var warhead_lbs = {
     "GBU16":               450.00,
     "Sea Eagle":           505.00,
     "AGM65":               200.00,
+    "RB-04E":              661.00,
+    "RB-05A":              353.00,
+    "RB-75":               126.00,
+    "M90":                 500.00,
+    "M71":                 200.00,
+    "MK-82":               192.00,
+    "LAU-68":               10.00,
 };
 
 var incoming_listener = func {
@@ -144,7 +153,7 @@ var incoming_listener = func {
               nearby_explosion();
             }
           } 
-        } elsif (last_vector[1] == " M70 rocket hit" or last_vector[1] == " KCA cannon shell hit" or last_vector[1] == " Gun Splash On " or last_vector[1] == " M61A1 shell hit") {
+        } elsif (last_vector[1] == " M70 rocket hit" or last_vector[1] == " KCA cannon shell hit" or last_vector[1] == " Gun Splash On " or last_vector[1] == " M61A1 shell hit" or last_vector[1] == " GAU-8/A hit") {
           # cannon hitting someone
           #print("cannon");
           if (size(last_vector) > 2 and last_vector[2] == " "~callsign) {
@@ -152,7 +161,7 @@ var incoming_listener = func {
             #print("hitting me");
 
             var probability = 0.20; # take 20% damage from each hit
-            if (last_vector[1] == " M70 rocket hit" or last_vector[1] == " Gun Splash On ") {
+            if (last_vector[1] == " M70 rocket hit" or last_vector[1] == " Gun Splash On " or last_vector[1] == " GAU-8/A hit") {
               probability = 0.30;
             }
             var failed = fail_systems(probability);
